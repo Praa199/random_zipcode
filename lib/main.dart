@@ -51,10 +51,47 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  static List<int> listName = [00000, 11111, 22222];
+  static List<int> listName = [
+    149,
+    12274,
+    12277,
+    12279,
+    12305,
+    12307,
+    12309,
+    12043,
+    12045,
+    12047,
+    12049,
+    12051,
+    12053,
+    12055,
+    12057,
+    12059,
+    12107,
+    12109,
+    12347,
+    12349,
+    12351,
+    12353,
+    12355,
+    12357,
+    12359,
+    12247,
+    12249,
+    12099,
+    12101,
+    12103,
+    12105,
+    1215,
+    1216,
+    1220,
+    141
+  ];
   final listLength = listName.length;
   var rng = Random();
   int _zipCode = 0;
+  String _message = "";
 
   void _randomCode() {
     setState(() {
@@ -62,22 +99,27 @@ class _MyHomePageState extends State<MyHomePage> {
       // print(listName[rng.nextInt(listLength)]);
       // }
       _zipCode = listName[rng.nextInt(listLength)];
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-    });
-  }
 
-  void _incrementCounter() {
-    setState(() {
+      if (_zipCode == 14 ||
+          (_zipCode >= 12274 && _zipCode <= 12279) ||
+          (_zipCode >= 12305 && _zipCode <= 12309)) {
+        _message = "UNTEN";
+        return;
+      }
+      if ((_zipCode >= 12043 && _zipCode <= 12059) ||
+          _zipCode == 12107 ||
+          _zipCode == 12109 ||
+          (_zipCode >= 12347 && _zipCode <= 12359)) {
+        _message = "MITTE";
+        return;
+      }
+      _message = "OBEN";
+      return;
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
     });
   }
 
@@ -115,12 +157,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // const Text(
-            //   'You have pushed the button this many times:',
+            // Text(
+            //   '${_message}',
+            //   style: Theme.of(context).textTheme.headline4,
             // ),
             Text(
               // '$_counter',
-              '$_zipCode',
+              '$_zipCode - $_message',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -128,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _randomCode,
-        tooltip: 'Increment',
+        tooltip: 'Next',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
