@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // }
       _zipCode = listName[rng.nextInt(listLength)];
 
-      if (_zipCode == 14 ||
+      if (_zipCode == 149 ||
           (_zipCode >= 12274 && _zipCode <= 12279) ||
           (_zipCode >= 12305 && _zipCode <= 12309)) {
         _message = "UNTEN";
